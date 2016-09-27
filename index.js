@@ -1,20 +1,27 @@
 var express = require('express')
 var app = express()
 
-app.get('/', function (req, res) {
-  res.send('Hello express')
+app.post('/:name', function (req, res) {
+  // var userName = req.params.name;
+  // var page = '<html>'+
+  //               '<body>' +
+  //                 '<h1>' +
+  //                 userName + '的购物车' +
+  //                 '</h1>' +
+  //               '</body>' +
+  //             '</html>'
+  res.send("a POST request received " + req.params.name)
 })
 
-app.get('/ppp', function (req, res) {
-  res.send('Hello ppp')
-})
-app.get('/liyuexi', function (req, res) {
-  console.log('hello liyuexi');
-})
+// app.get('/about.html', function (req, res) {
+//   var page = '<html>'+
+//                 '<body>' +
+//                   '<h1> about.html</h1>' +
+//                 '</body>' +
+//               '</html>'
+//   res.send(page)
+// })
 
-app.get('/mengmeng', function (req, res) {
-  console.log('hello mengmeng');
-})
 app.listen(3000,function(){
   console.log('running on port 3000...plz visit http://localhost:3000');
 })
