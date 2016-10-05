@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router';
+import map from 'lodash/fp/map';
 
 class PostList extends React.Component {
   constructor(){
@@ -47,16 +48,37 @@ class PostList extends React.Component {
         borderRadius:'5px',
         margin:'0 auto',
         backgroundColor:'#00bcd4'
-
+      },
+      box:{
+        float:'right',
+        position:'absolute',
+        bottom:'3px',
+        right:'10px'
+      },
+      btn:{
+        textDecoration:'none',
+        color:'#00bcd4',
+        marginLeft:'20px'
       }
     }
-    let posts = this.state.posts.map((item,i)=><div style={styles.content}  key={i}><p style={styles.title}>{item.title}</p></div>)
-    return(
+    const postList = map((post) => {
+      return (
+        <div style={styles.content} key={post._id}>
+          <div style={styles.title}>{post.title}</div>
+          <div style={styles.box}>
+            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
+            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
+            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
+          </div>
+        </div>
+      )
+    }, this.state.posts);
+    return (
       <div>
         <Link to='/write' style={styles.link}>写文章</Link>
-      　{posts}
+        { postList }
       </div>
-    )
+    );
   }
 }
 

@@ -83,7 +83,7 @@ class Form extends React.Component {
         </div>
         <div style={styles.div}>
           <label style={styles.label}>内容</label>
-          <textarea style={[styles.input,{height: '100%'}]} rows='20' key='2' ref='content' />
+          <textarea style={[styles.input, {height: '100%'}]} rows='20' key='2' ref='content' />
         </div>
         <div style={styles.actions}>
           <button type='submit' style={styles.button}>{this.props.label}</button>
@@ -94,4 +94,4 @@ class Form extends React.Component {
   }
 }
 
-export default Form;
+export default Radium(Form);

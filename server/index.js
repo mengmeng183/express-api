@@ -50,6 +50,13 @@ app.get('/posts',function(req,res){
     res.json({ posts: posts}) //返回json格式数据，名为posts，内容为查找的结果
   })
 })
+app.get('/post/:id',function(req,res){
+  Post.findById({_id:req.params.id},function(err,doc){ //用findById比findOne更好
+    if(err) return res.send('出错了');
+    res.json({post:doc})
+  })
+})
+
 app.listen(3000,function(){
   console.log('running on port 3000...plz visit http://localhost:3000');
 })
