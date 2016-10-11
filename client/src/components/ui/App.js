@@ -1,4 +1,5 @@
 import React from 'react';
+import {Link} from 'react-router';
 
 
 class App extends React.Component {
@@ -20,9 +21,9 @@ class App extends React.Component {
     return(
       <div>
         <header style={styles.header}>
-          <div　style={styles.link}>
+          <Link　to='/' style={styles.link}>
             BORN TO CODE
-          </div>
+          </Link>
         </header>
       　{this.props.children}
       </div>

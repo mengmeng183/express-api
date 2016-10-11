@@ -1,13 +1,14 @@
 var express = require('express')
 var app = express()
-var bodyParser = require('body-parser')
 var mongoose = require('mongoose');
 var Post = require('./models/post');
-mongoose.Promise = global.Promise;
-mongoose.connect('mongodb://localhost:27017/express-api');
+mongoose.Promise = global.Promise;//取消警告信息
+mongoose.connect('mongodb://localhost:27017/express-api');//连接数据库
 var db = mongoose.connection;
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended:false}))
+
+var bodyParser = require('body-parser')
+app.use(bodyParser.json())//解析json
+app.use(bodyParser.urlencoded({extended:false}))//解析表单
 
 //关闭同源策略，开放CORS（跨域共享）
 var cors = require ('cors');
@@ -50,7 +51,7 @@ app.get('/posts',function(req,res){
     res.json({ posts: posts}) //返回json格式数据，名为posts，内容为查找的结果
   })
 })
-app.get('/post/:id',function(req,res){
+app.get('/posts/:id',function(req,res){
   Post.findById({_id:req.params.id},function(err,doc){ //用findById比findOne更好
     if(err) return res.send('出错了');
     res.json({post:doc})

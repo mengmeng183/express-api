@@ -5,7 +5,8 @@ import Radium from 'radium';
 
 class Form extends React.Component {
   handleSubmit(e) {
-    e.preventDefault();
+    e.preventDefault();//refresh is not for SPA(Single Page App)
+    //从表单内抽取元素
     let category = this.refs.category.value;
     let title = this.refs.title.value;
     let content = this.refs.content.value;
@@ -75,15 +76,15 @@ class Form extends React.Component {
       <form style={styles.form} onSubmit={this.handleSubmit.bind(this)}>
         <div style={styles.div}>
           <label style={styles.label}>分类</label>
-          <input style={styles.input} key='0' ref='category' />
+          <input style={styles.input} key='0' ref='category' defaultValue={this.props.post ? this.props.post.category : ''}/>
         </div>
         <div style={styles.div}>
           <label style={styles.label}>标题</label>
-          <input style={styles.input} key='1' ref='title' />
+          <input style={styles.input} key='1' ref='title' defaultValue={this.props.post ? this.props.post.title : ''}/>
         </div>
         <div style={styles.div}>
           <label style={styles.label}>内容</label>
-          <textarea style={[styles.input, {height: '100%'}]} rows='20' key='2' ref='content' />
+          <textarea style={[styles.input, {height: '100%'}]} rows='20' key='2' ref='content' defaultValue={this.props.post ? this.props.post.content : ''}/>
         </div>
         <div style={styles.actions}>
           <button type='submit' style={styles.button}>{this.props.label}</button>

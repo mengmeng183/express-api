@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var PostSchema = mongoose.Schema({
-   category:{type:String},
    title:{ type:String, required:true},
+   category:{type:String},
    content:{type:String}
   },
   { timestamps: true }

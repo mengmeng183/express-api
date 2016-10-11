@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Settings from '../../settings';
+
 class ShowPost extends React.Component {
   constructor(){
     super();
@@ -9,7 +11,7 @@ class ShowPost extends React.Component {
   }
   componentDidMount(){
     let id = this.props.params.id
-    axios.get(`http://localhost:3000/post/${id}`).then(
+    axios.get(`${Settings.host}/posts/${id}`).then(
       res => {
         this.setState({
           data:res.data.post

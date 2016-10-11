@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import {Link} from 'react-router';
 import map from 'lodash/fp/map';
+import Settings from '../../settings';
 
 class PostList extends React.Component {
   constructor(){
@@ -13,7 +14,7 @@ class PostList extends React.Component {
   componentDidMount(){
     //在此发Ajax请求
     //请求服务器端json数据
-    axios.get('http://localhost:3000/posts').then(
+    axios.get(`${Settings.host}/posts`).then(
      (res) => (
        this.setState({
          posts:res.data.posts
@@ -66,9 +67,9 @@ class PostList extends React.Component {
         <div style={styles.content} key={post._id}>
           <div style={styles.title}>{post.title}</div>
           <div style={styles.box}>
-            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
-            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
-            <Link to={`/post/${post._id}`} style={styles.btn}>查看</Link>
+            <Link to={`/posts/${post._id}`} style={styles.btn}>查看</Link>
+            <Link to={`/posts/${post._id}/edit`} style={styles.btn}>编辑</Link>
+            <Link to={`/posts/${post._id}`} style={styles.btn}>删除</Link>
           </div>
         </div>
       )
